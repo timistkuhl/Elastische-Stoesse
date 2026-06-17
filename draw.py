@@ -1,49 +1,33 @@
 import pygame
+import numpy as np
+import ball as b
 
 class Draw:
     def __init__(self, height, width):
-        screen = pygame.display.set_mode((height, width))
+        # pygame.init
+        self.screen = pygame.display.set_mode((height, width))
         pygame.display.set_caption("Elastische Stoesse")
+        self.ORANGE = ( 255, 140, 0)
+        self.ROT     = ( 255, 0, 0)
+        self.GRUEN   = ( 0, 255, 0)
+        self.SCHWARZ = ( 0, 0, 0)
+        self.WEISS = ( 255, 255, 255)
+            
 
-# # genutzte Farbe
-ORANGE  = ( 255, 140, 0)
-# ROT     = ( 255, 0, 0)
-# GRUEN   = ( 0, 255, 0)
-# SCHWARZ = ( 0, 0, 0)
-WEISS   = ( 255, 255, 255)
+    def paintBalls(self, balls):
+        self.screen.fill(self.WEISS)
+        for ball in balls:
+            pygame.draw.circle(self.screen, self.ORANGE, ball.position,ball.radius)
+        pygame.display.flip()
 
-def paintBalls(balls):
-    screen.fill(WEISS)
-    for ball in balls:
-        pygame.draw.circle(screen, ORANGE, ball.position, ball.radius)
+    def quitGraphic():
+        pygame.quit()
 
-# Bildschirm Aktualisierungen einstellen
-def quitGraphic():
-    pygame.quit()
+def main():
+    ball1 = b.Ball(np.array([10,20]), np.array([10,20]), 50, 20)
+    ball2 = b.Ball(np.array([50,20]), np.array([10,20]), 50, 20)
+    d = Draw(500, 500)
+    d.paintBalls(np.array([ball1, ball2]))
 
-t = 0
-spielaktiv = True
-# Schleife Hauptprogramm
-while spielaktiv:
-
-
-
-
-    # Spiellogik hier integrieren
-    # Spielfeld löschen
-
-
-    # Spielfeld/figuren zeichnen
-
-    pygame.draw.circle(screen, ORANGE, [250+1*t, 250-0.01*t**3], 1)
-
-    pygame.draw.circle(screen, ROT, [200+1*t, 300-t*1], 1)
-    # Fenster aktualisieren
-    pygame.display.flip()
-    t+=1
-    # Refresh-Zeiten festlegen
-    clock.tick(60)
-
-# def main():
-#     ball1 = new 
+main()
 
