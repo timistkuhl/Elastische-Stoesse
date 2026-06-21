@@ -5,6 +5,7 @@ import wall
 class Physics:
 
     def __init__(self):
+        self.collisions = 0
         pass
 
     def tick(self, objects):
@@ -36,6 +37,8 @@ class Physics:
         # hier wirds interessant
         sphere1.speed += normal * ((m1*v1parallel+m2*(2*v2parallel-v1parallel))/(m1+m2)-v1parallel)
         sphere2.speed += normal * ((m2*v2parallel+m1*(2*v1parallel-v2parallel))/(m1+m2)-v2parallel)
+        #self.collisions += 1
+        #print(self.collisions)
         
     def sphereWallCollision(self, sphere: ball.Ball, wall: wall.Wall):
         AP, AB = sphere.position - wall.pointA, wall.pointB - wall.pointA
@@ -48,3 +51,5 @@ class Physics:
         if vparallel > 0:
             return
         sphere.speed -= 2 * normal * vparallel
+        #self.collisions += 1
+        #print(self.collisions)
