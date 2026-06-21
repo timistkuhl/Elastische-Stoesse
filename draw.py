@@ -2,10 +2,11 @@ import pygame as pg
 import numpy as np
 import ball as b
 import wall
+import arc
 
 class Draw:
     def __init__(self, height, width):
-        self.screen = pg.display.set_mode((height, width))
+        self.screen = pg.display.set_mode((height, width), pg.RESIZABLE)
         pg.display.set_caption("Elastische Stoesse")
         self.ORANGE = ( 255, 140, 0)
         self.ROT     = ( 255, 0, 0)
@@ -26,4 +27,9 @@ class Draw:
             return
         if isinstance(object, wall.Wall):
             pg.draw.line(self.screen, self.ROT, [int(coord) for coord in object.pointA], [int(coord) for coord in object.pointB], 3)
+            return
+        if isinstance(object, arc.Arc):
+            topleft = [int(coord) for coord in object.center-object.radius]
+            rect = pg.Rect(topleft,(int(2*object.radius), int(2*object.radius)))
+            pg.draw.arc(self.screen, self.ROT, rect,object.startAngle, object.endAngle, 3)
             return

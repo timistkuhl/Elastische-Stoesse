@@ -1,6 +1,7 @@
 import numpy as np
 import ball
 import wall
+import arc
 
 class Physics:
 
@@ -20,6 +21,9 @@ class Physics:
                     continue
                 if isinstance(other, wall.Wall):
                     self.sphereWallCollision(obj, other)
+                    continue
+                if isinstance(other, arc.Arc):
+                    self.sphereArcCollision(obj, other)
                     continue
                 
             obj.position += obj.speed
@@ -53,3 +57,6 @@ class Physics:
         sphere.speed -= 2 * normal * vparallel
         #self.collisions += 1
         #print(self.collisions)
+
+    def sphereArcCollision(self, sphere: ball.Ball, arc: arc.Arc):
+        pass
