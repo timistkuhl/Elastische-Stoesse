@@ -1,6 +1,7 @@
 import pygame as pg
 import numpy as np
 import ball as b
+import wall
 
 class Draw:
     def __init__(self, height, width):
@@ -13,8 +14,16 @@ class Draw:
         self.WEISS = ( 255, 255, 255)
             
 
-    def paint(self, balls):
+    def paint(self, objects):
         self.screen.fill(self.WEISS)
-        for ball in balls:
-            pg.draw.circle(self.screen, self.ORANGE, ball.position,ball.radius)
+        for obj in objects:
+            self.drawObj(obj)
         pg.display.flip()
+
+    def drawObj(self, object):
+        if isinstance(object, b.Ball):
+            pg.draw.circle(self.screen, self.ORANGE, [int(coord) for coord in object.position], object.radius)
+            return
+        if isinstance(object, wall.Wall):
+            pg.draw.line(self.screen, self.ROT, [int(coord) for coord in object.pointA], [int(coord) for coord in object.pointB], 3)
+            return
