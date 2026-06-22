@@ -3,6 +3,7 @@ import pygame as pg
 import ball
 import wall
 import arc
+import counter
 import draw
 import physics
 
@@ -17,6 +18,7 @@ def initPi():
     objects.append(wall.Wall(np.array([400,200], dtype='f'), np.array([400, 300], dtype='f')))
     objects.append(ball.Ball(np.array([20, 250], dtype='f'), np.array([0.05, 0], dtype='f'), 20, 10**4))
     objects.append(ball.Ball(np.array([200, 250], dtype='f'), np.array([0, 0], dtype='f'), 20, 1))
+    objects.append(counter.Counter(0))
 
 def initBilliard():
     objects.append(wall.Wall(np.array([70,350], dtype='f'), np.array([235, 350], dtype='f')))
@@ -45,7 +47,8 @@ def initBilliard():
     objects.append(ball.Ball(np.array([400, 250], dtype='f'), np.array([0, 0], dtype='f'), 10, 1))
     objects.append(ball.Ball(np.array([350, 300], dtype='f'), np.array([0, 0], dtype='f'), 10, 1))
 
-initBilliard()
+initPi()
+# initBilliard()
 
 
 getTicksLastFrame = 0

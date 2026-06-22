@@ -1,6 +1,7 @@
 import pygame as pg
 import numpy as np
 import ball as b
+import counter
 import wall
 import arc
 
@@ -13,6 +14,7 @@ class Draw:
         self.GRUEN   = ( 0, 255, 0)
         self.SCHWARZ = ( 0, 0, 0)
         self.WEISS = ( 255, 255, 255)
+        self.font = pg.font.SysFont("Arial", 24)
             
 
     def paint(self, objects):
@@ -30,6 +32,13 @@ class Draw:
             return
         if isinstance(object, arc.Arc):
             topleft = [int(coord) for coord in object.center-object.radius]
-            rect = pg.Rect(topleft,(int(2*object.radius), int(2*object.radius)))
+            rect = pg.Rect(topleft, (int(2*object.radius), int(2*object.radius)))
             pg.draw.arc(self.screen, self.ROT, rect,object.startAngle, object.endAngle, 3)
+            return
+        if isinstance(object, counter.Counter):
+            count = str(object.currentCount)
+            text = self.font.render(count, True, self.SCHWARZ)
+            rect = pg.Rect(10, 10, text.get_height(), text.get_width())
+            self.screen.blit(text, (20, 20))
+            # pg.draw.rect(self.screen, self.SCHWARZ, rect)
             return
