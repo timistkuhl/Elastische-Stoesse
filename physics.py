@@ -6,7 +6,7 @@ import arc
 class Physics:
 
     def __init__(self):
-        self.collisions = 0
+        #self.collisions = 0
         pass
 
     def tick(self, objects):
@@ -50,9 +50,9 @@ class Physics:
         connection = AP - h*AB
         if np.linalg.norm(connection) > sphere.radius:
             return
-        normal = connection/np.linalg.norm(connection)
+        normal = -connection/np.linalg.norm(connection)
         vparallel = np.dot(sphere.speed, normal)
-        if vparallel > 0:
+        if not vparallel > 0:
             return
         sphere.speed -= 2 * normal * vparallel
         #self.collisions += 1
