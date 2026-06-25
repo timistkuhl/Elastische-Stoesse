@@ -8,7 +8,7 @@ import physics
 
 pg.init()
 clock = pg.time.Clock()
-graphic = draw.Draw(500, 500)
+graphic = draw.Draw(1000, 1000)
 physic = physics.Physics()
 
 objects = []
@@ -45,8 +45,28 @@ def initBilliard():
     objects.append(ball.Ball(np.array([400, 250], dtype='f'), np.array([0, 0], dtype='f'), 10, 1))
     objects.append(ball.Ball(np.array([350, 300], dtype='f'), np.array([0, 0], dtype='f'), 10, 1))
 
-initBilliard()
 
+def initRocket():
+    objects.append(wall.Wall(np.array([500,700], dtype='f'), np.array([900, 700], dtype='f')))
+
+
+    objects.append(ball.Ball(np.array([700, 450], dtype='f'), np.array([0, 0], dtype='f'), 10, 1))
+
+    objects.append(ball.Ball(np.array([700, 480], dtype='f'), np.array([0, 0], dtype='f'), 20, 2))
+
+    objects.append(ball.Ball(np.array([700, 540], dtype='f'), np.array([0, 0], dtype='f'), 40, 5))
+
+def initWater():
+    objects.append(wall.Wall(np.array([500,700], dtype='f'), np.array([900,700], dtype='f')))
+
+    objects.append(wall.Wall(np.array([500,700], dtype='f'), np.array([900,700], dtype='f')))
+
+    objects.append(wall.Wall(np.array([500,700], dtype='f'), np.array([900,700], dtype='f')))
+
+
+# initBilliard()
+# initPi()
+initRocket()
 
 getTicksLastFrame = 0
 running = True

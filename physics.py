@@ -10,6 +10,8 @@ class Physics:
         pass
 
     def tick(self, objects):
+        self.applyGravity(objects)
+        self.applyFriction(objects)
         for obj in objects:
             if not isinstance(obj, ball.Ball):
                 continue # other things dont move
@@ -60,3 +62,17 @@ class Physics:
 
     def sphereArcCollision(self, sphere: ball.Ball, arc: arc.Arc):
         pass
+
+    def applyGravity(self, objects):
+        for obj in objects:
+            if isinstance(obj, ball.Ball):
+                obj.speed-=[0,-0.00981]
+
+    def applyFriction(self, objects):
+        for obj in objects:
+            if isinstance(obj, ball.Ball):
+                #rollreibung
+                obj.speed*=0.9999
+                #haftreibung:
+                # if np.linalg.norm(obj.speed)<0.01:
+                #     obj.speed-=obj.speed
