@@ -10,15 +10,17 @@ import settings
 import setups.pi as pi
 import setups.billiard as billiard
 import setups.rocket as rocket
+import setups.onedCase as onedCase
 
 pg.init()
 clock = pg.time.Clock()
 graphic = draw.Draw(1000, 1000)
 physic = physics.Physics()
 
-state = pi.getSetup()
+# state = pi.getSetup()
 # state = billiard.getSetup()
 # state = rocket.getSetup()
+state = onedCase.getSetup()
 
 if state.counting:
     count = counter.Counter()
