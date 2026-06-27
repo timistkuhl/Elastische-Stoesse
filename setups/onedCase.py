@@ -1,13 +1,12 @@
 import numpy as np
 import ball
 import wall
-import arc
 import settings
 
 def getSetup() -> settings:
     objects = []
     objects.append(wall.Wall(np.array([200,500], dtype='f'), np.array([200, 200], dtype='f')))
-    
+
     objects.append(wall.Wall(np.array([700,500], dtype='f'), np.array([700, 200], dtype='f')))
 
 

@@ -3,7 +3,6 @@ import numpy as np
 import ball as b
 import wall
 import arc
-import counter
 
 class Draw:
     def __init__(self, height: int, width: int):

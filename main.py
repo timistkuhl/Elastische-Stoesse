@@ -1,12 +1,7 @@
-import numpy as np
 import pygame as pg
-import ball
-import wall
-import arc
 import draw
 import physics
 import counter
-import settings
 import setups.pi as pi
 import setups.billiard as billiard
 import setups.rocket as rocket
