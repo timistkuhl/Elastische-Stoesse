@@ -7,6 +7,7 @@ import setups.billiard as billiard
 import setups.rocket as rocket
 import setups.onedCase as onedCase
 import setups.sandBox as sandBox
+import setups.jumpingballs as jump
 import mouse
 
 pg.init()
@@ -18,7 +19,7 @@ m = mouse.Mouse()
 # state = pi.getSetup()
 # state = billiard.getSetup()
 # state = rocket.getSetup()
-state = sandBox.getSetup()
+state = jump.getSetup()
 
 if state.counting:
     count = counter.Counter()
