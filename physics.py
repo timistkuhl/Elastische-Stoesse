@@ -4,19 +4,20 @@ import wall
 import arc
 
 class Physics:
+    grav = np.zeros(2)
 
     def __init__(self):
         #self.collisions = 0
         pass
 
     def tick(self, objects, gravity: np.array, drag: float) -> int:
-
+        # self.grav = gravity
         collisions = 0
         for obj in objects:
             if not isinstance(obj, ball.Ball):
                 continue # other things dont move
 
-            obj.speed += gravity
+            obj.speed += self.grav
             obj.speed *= 1 - drag
             for other in objects:
                 if other is obj:
