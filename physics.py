@@ -6,7 +6,6 @@ import arc
 class Physics:
 
     def __init__(self):
-        #self.collisions = 0
         pass
 
     def tick(self, objects, gravity: np.array, drag: float) -> int:

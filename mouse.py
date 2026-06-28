@@ -13,7 +13,7 @@ class Mouse:
 
     def handleEvent(self, event, state: settings.Settings):
         
-        if self.mousedown and event.type == pg.MOUSEBUTTONUP: # gibt es hier überhaupt den Fall dass nicht mousedown?
+        if event.type == pg.MOUSEBUTTONUP:
             endpos = pg.mouse.get_pos()
             if np.linalg.norm(endpos - self.startpos) < 0.05:
                 o = ball.Ball(self.startpos, np.array([0, 0], dtype = 'f'), self.size, self.size)
