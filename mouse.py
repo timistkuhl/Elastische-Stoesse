@@ -30,10 +30,11 @@ class Mouse:
             return
         
         if event.type == pg.KEYDOWN:
-            if state.gravity.any() == 0:
-                state.gravity = np.array((0, 0.00981))
-            else:
-                state.gravity = np.array((0, 0))
+            if event.key == pg.K_g:
+                if state.gravity.any() == 0:
+                    state.gravity = np.array((0, 0.00981))
+                else:
+                    state.gravity = np.array((0, 0))
 
     def tick(self):
         if self.mousedown:

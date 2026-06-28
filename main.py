@@ -26,15 +26,21 @@ if state.counting:
 
 getTicksLastFrame = 0
 running = True
+paused = False
+c = 0
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
             break
+        if event.type == pg.KEYDOWN and event.key == pg.K_p:
+            paused = not paused
+            continue
         m.handleEvent(event, state)
     m.tick()
 
-    c = physic.tick(state.objects, state.gravity, state.drag)
+    if not paused:
+        c = physic.tick(state.objects, state.gravity, state.drag)
 
     if state.counting:
         count.countUp(c)
