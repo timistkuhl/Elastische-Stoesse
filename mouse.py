@@ -34,7 +34,7 @@ class Mouse:
                 # print(phys.grav)
                 if phys.grav.any()==0:
                     # print('hello gravi')
-                    phys.grav = np.array((0,0.00981))
+                    phys.grav = np.array((0,0.0981))
                 else:
                     # print('no')
                     phys.grav = np.array((0,0))
