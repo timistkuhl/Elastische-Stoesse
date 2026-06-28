@@ -26,10 +26,12 @@ if state.counting:
 getTicksLastFrame = 0
 running = True
 while running:
-    # for event in pg.event.get():
-    #     if event.type == pg.QUIT:
-    #         running = False
-    m.handleEvents(state.objects, physic)
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            running = False
+            break
+        m.handleEvent(event, state)
+    m.tick()
 
     c = physic.tick(state.objects, state.gravity, state.drag)
 
