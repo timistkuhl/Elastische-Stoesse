@@ -37,10 +37,10 @@ class Draw:
             return
         
     def drawCounter(self, counter):
-        POSITION = np.array([20, 20])
+        POSITION = np.array([10, 10])
         MARGIN = np.array([5, 5])
         count = str(counter.currentCount)
         text = self.FONT.render(count, True, self.SCHWARZ)
-        self.screen.blit(text, POSITION)
-        rect = pg.Rect(POSITION - MARGIN, text.get_size() + 2 * MARGIN)
+        self.screen.blit(text, POSITION + MARGIN)
+        rect = pg.Rect(POSITION, text.get_size() + 2 * MARGIN)
         pg.draw.rect(self.screen, self.SCHWARZ, rect, width = 1)

@@ -8,15 +8,29 @@ class Physics:
     def __init__(self):
         pass
 
-    def tick(self, objects, gravity: np.array, drag: float) -> int:
-        # maximum = max(max(np.linalg.norm(obj.speed) for obj in objects if isinstance(obj, ball.Ball)), 1)
+    def tick(self, objects, gravity: np.array, drag: float, speedLimit: float) -> int:
+        
+        if speedLimit:
+            s = [np.linalg.norm(obj.speed) for obj in objects if isinstance(obj, ball.Ball)]
+            if len(s) == 0: # immer diese Spezialfälle...
+                maximum = 0
+            else:
+                maximum = max(s)
+            timeFactor = 1/max(maximum, 1)
         collisions = 0
         for obj in objects:
             if not isinstance(obj, ball.Ball):
                 continue # other things dont move
 
-            obj.speed += gravity
-            obj.speed *= 1 - drag
+            if speedLimit:
+                obj.speed += gravity * timeFactor
+                if drag:
+                    # das ist jetzt irgendwie auch nicht so schön
+                    obj.speed *= np.power(1 - drag, 1/timeFactor)
+            else:
+                obj.speed += gravity
+                obj.speed *= 1 - drag
+
             for other in objects:
                 if other is obj:
                     continue
@@ -30,8 +44,11 @@ class Physics:
                     collisions += self.sphereArcCollision(obj, other)
                     continue
 
-            obj.position += obj.speed
-            # /maximum
+            if speedLimit:
+                obj.position += obj.speed * timeFactor
+            else:
+                obj.position += obj.speed
+
         return collisions
 
     def sphereSphereCollision(self, sphere1: ball.Ball, sphere2: ball.Ball) -> int:
@@ -44,7 +61,7 @@ class Physics:
             # Spheres actually already have collided and are moving away from each other
             return 0
         m1, m2 = sphere1.mass, sphere2.mass
-        # hier wirds interessant
+
         sphere1.speed += normal * ((m1*v1parallel+m2*(2*v2parallel-v1parallel))/(m1+m2)-v1parallel)
         sphere2.speed += normal * ((m2*v2parallel+m1*(2*v1parallel-v2parallel))/(m1+m2)-v2parallel)
         return 1

@@ -16,10 +16,10 @@ graphic = draw.Draw(1000, 1000)
 physic = physics.Physics()
 m = mouse.Mouse()
 
-# state = pi.getSetup()
+state = pi.getSetup()
 # state = billiard.getSetup()
 # state = rocket.getSetup()
-state = jump.getSetup()
+# state = jump.getSetup()
 # state = onedCase.getSetup()
 # state = sandBox.getSetup()
 
@@ -42,7 +42,7 @@ while running:
     m.tick()
 
     if not paused:
-        c = physic.tick(state.objects, state.gravity, state.drag)
+        c = physic.tick(state.objects, state.gravity, state.drag, state.speedLimit)
 
     if state.counting:
         count.countUp(c)
