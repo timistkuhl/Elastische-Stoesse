@@ -12,7 +12,7 @@ import mouse
 
 pg.init()
 clock = pg.time.Clock()
-graphic = draw.Draw(800, 600)
+graphic = draw.Draw(1000, 1000)
 physic = physics.Physics()
 m = mouse.Mouse()
 
@@ -20,6 +20,8 @@ m = mouse.Mouse()
 # state = billiard.getSetup()
 # state = rocket.getSetup()
 state = jump.getSetup()
+# state = onedCase.getSetup()
+# state = sandBox.getSetup()
 
 if state.counting:
     count = counter.Counter()

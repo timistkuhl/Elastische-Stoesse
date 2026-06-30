@@ -15,7 +15,7 @@ class Mouse:
         
         if event.type == pg.MOUSEBUTTONUP:
             endpos = pg.mouse.get_pos()
-            if np.linalg.norm(endpos - self.startpos) < 0.05:
+            if np.linalg.norm(endpos - self.startpos) < 5:
                 o = ball.Ball(self.startpos, np.array([0, 0], dtype = 'f'), self.size, self.size)
             else:
                 o = wall.Wall(self.startpos, endpos)
@@ -31,10 +31,10 @@ class Mouse:
         
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_g:
-                if state.gravity.any() == 0:
-                    state.gravity = np.array((0, 0.00981))
-                else:
+                if state.gravity.any():
                     state.gravity = np.array((0, 0))
+                else:
+                    state.gravity = np.array((0, 0.00981))
 
     def tick(self):
         if self.mousedown:

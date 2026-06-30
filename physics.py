@@ -9,7 +9,7 @@ class Physics:
         pass
 
     def tick(self, objects, gravity: np.array, drag: float) -> int:
-
+        # maximum = max(max(np.linalg.norm(obj.speed) for obj in objects if isinstance(obj, ball.Ball)), 1)
         collisions = 0
         for obj in objects:
             if not isinstance(obj, ball.Ball):
@@ -29,8 +29,9 @@ class Physics:
                 if isinstance(other, arc.Arc):
                     collisions += self.sphereArcCollision(obj, other)
                     continue
-                
+
             obj.position += obj.speed
+            # /maximum
         return collisions
 
     def sphereSphereCollision(self, sphere1: ball.Ball, sphere2: ball.Ball) -> int:
